@@ -24,9 +24,9 @@ export default defineConfig(({ mode }) => {
       sourcemap: true,
       lib: {
         entry: path.resolve(__dirname, 'src/index.ts'),
-        name: 'react-formik-step-wizard',
+        name: 'onboarder',
         formats: ['es'],
-        fileName: (format) => `react-formik-step-wizard.${format}.js`
+        fileName: (format) => `onboarder.${format}.js`
       },
       rollupOptions: {
         // Excludes react from build file

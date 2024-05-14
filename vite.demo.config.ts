@@ -6,7 +6,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(({ mode }) => {
   return {
     // Base path used in index.html
-    base: '/react-formik-step-wizard',
+    base: '/onboarder',
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
@@ -23,9 +23,9 @@ export default defineConfig(({ mode }) => {
       cssMinify: true,
       lib: {
         entry: path.resolve(__dirname, 'demo/main.tsx'),
-        name: 'react-formik-step-wizard',
+        name: 'onboarder',
         formats: ['es'],
-        fileName: (format) => `react-formik-step-wizard.${format}.js`
+        fileName: (format) => `onboarder.${format}.js`
       },
       rollupOptions: {
         input: {
