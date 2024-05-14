@@ -14769,7 +14769,7 @@ attempted value: ${s}
             " / ",
             r
           ] }),
-          /* @__PURE__ */ O.jsx("a", { href: "https://github.com/kennyhei/react-formik-step-wizard", target: "_blank", children: /* @__PURE__ */ O.jsx("img", { src: "/react-formik-step-wizard/github-mark-white.svg", className: "rounded-md w-9 my-0" }) })
+          /* @__PURE__ */ O.jsx("a", { href: "https://github.com/kennyhei/react-formik-step-wizard", target: "_blank", children: /* @__PURE__ */ O.jsx("img", { src: "/onboarder/github-mark-white.svg", className: "rounded-md w-9 my-0" }) })
         ] })
       ] }),
       /* @__PURE__ */ O.jsx("div", { className: "w-full bg-gray-600 h-1 mt-[17px]", children: /* @__PURE__ */ O.jsx(
