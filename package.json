@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:demo": "vite build -c vite.demo.config.js",
+    "build:demo": "vite build -c vite.config.js",
     "predeploy": "npm run build:demo",
     "deploy": "gh-pages -d dist",
     "preview": "vite preview",
