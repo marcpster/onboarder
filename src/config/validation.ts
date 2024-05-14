@@ -1,4 +1,5 @@
 import * as Yup from 'yup'
+//@ts-ignore
 import { WizardValues, Values } from "react-formik-step-wizard"
 
 /* Schemas for <Formik validationSchema> */
