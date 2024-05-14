@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => {
       minify: true,
       cssMinify: true,
       lib: {
-        entry: path.resolve(__dirname, 'demo/main.tsx'),
+        entry: path.resolve(__dirname, 'src/main.tsx'),
         name: 'onboarder',
         formats: ['es'],
         fileName: (format) => `onboarder.${format}.js`

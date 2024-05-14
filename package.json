@@ -7,8 +7,8 @@
   "scripts": {
     "dev": "vite",
     "lint": "tsc",
-    "build": "tsc && vite build",
-    "build:demo:zz": "vite build -c vite.config.js",
+    "build": "vite build",
+    "build:dem:zz": "vite build -c vite.config.js",
     "deploy": "gh-pages -d dist",
     "preview": "vite preview",
     "postpublish": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag v$PACKAGE_VERSION && git push --tags",
