@@ -1,0 +1,81 @@
+{
+  "name": "onboarder",
+  "author": "kennyhei <kenny_heinonen@hotmail.com>",
+  "description": "React multistep wizard with Formik integration",
+  "homepage": "https://github.com/kennyhei/react-formik-step-wizard",
+  "version": "2.0.0",
+  "license": "MIT",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/react-formik-step-wizard.es.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/react-formik-step-wizard.es.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kennyhei/react-formik-step-wizard"
+  },
+  "keywords": [
+    "react",
+    "formik",
+    "step",
+    "multistep",
+    "wizard",
+    "react-wizard",
+    "formik-wizard",
+    "step-wizard",
+    "react-formik-step-wizard",
+    "kennyhei"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:demo": "vite build -c vite.demo.config.js",
+    "predeploy": "npm run build:demo",
+    "deploy": "gh-pages -d dist",
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build",
+    "postpublish": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag v$PACKAGE_VERSION && git push --tags",
+    "install:local": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && npm run build && npm pack && tar -xzf react-formik-step-wizard-$PACKAGE_VERSION.tgz && mv package react-formik-step-wizard && yarn add ./react-formik-step-wizard",
+    "uninstall:local": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && yarn remove react-formik-step-wizard && rm -rf react-formik-step-wizard-$PACKAGE_VERSION.tgz react-formik-step-wizard"
+  },
+  "dependencies": {
+    "react-formik-step-wizard": "^2.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "@tailwindcss/typography": "^0.5.13",
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.61",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.19",
+    "daisyui": "^4.9.0",
+    "formik": "^2.4.6",
+    "framer-motion": "^11.1.5",
+    "gh-pages": "^6.1.1",
+    "postcss": "^8.4.33",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.1.0",
+    "react-spinners": "^0.13.8",
+    "sass": "^1.76.0",
+    "tailwindcss": "^3.4.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5",
+    "vite": "^5.1.4",
+    "vite-plugin-dts": "^3.7.3",
+    "yup": "^1.4.0"
+  },
+  "peerDependencies": {
+    "formik": ">=2.4.0",
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
+  }
+}
