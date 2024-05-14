@@ -12,11 +12,6 @@
     "dist",
     "src"
   ],
-  "exports": {
-    ".": {
-      "import": "./dist/react-formik-step-wizard.es.js"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/kennyhei/react-formik-step-wizard"
