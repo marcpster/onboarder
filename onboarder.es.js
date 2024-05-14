@@ -14760,7 +14760,7 @@ attempted value: ${s}
     const { isAnimated: e, setIsAnimated: t } = x.useContext(Df), { stepNumber: n, totalSteps: r } = co(), i = `${(n - 1) / (r - 1) * 100}%`;
     return /* @__PURE__ */ O.jsxs("header", { className: "pt-4 pb-3", children: [
       /* @__PURE__ */ O.jsxs("div", { className: "px-5 flex justify-between items-center prose max-w-none", children: [
-        /* @__PURE__ */ O.jsx("h3", { className: "mb-0 text-base sm:text-xl", children: "onboardatron" }),
+        /* @__PURE__ */ O.jsx("h3", { className: "mb-0 text-base sm:text-xl", children: "onboardatron-1" }),
         /* @__PURE__ */ O.jsxs("div", { className: "flex items-center", children: [
           /* @__PURE__ */ O.jsxs("div", { className: "mr-3 text-sm", children: [
             /* @__PURE__ */ O.jsx("span", { className: "hidden min-[400px]:inline", children: "Step" }),
