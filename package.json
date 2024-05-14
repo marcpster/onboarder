@@ -1,33 +1,9 @@
 {
   "name": "onboarder",
-  "author": "kennyhei <kenny_heinonen@hotmail.com>",
-  "description": "React multistep wizard with Formik integration",
-  "homepage": "https://github.com/kennyhei/react-formik-step-wizard",
-  "version": "2.0.0",
+  "description": "Onboarding wizard using react-formik-step-wizard",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
-  "types": "./dist/index.d.ts",
-  "module": "./dist/react-formik-step-wizard.es.js",
-  "files": [
-    "dist",
-    "src"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kennyhei/react-formik-step-wizard"
-  },
-  "keywords": [
-    "react",
-    "formik",
-    "step",
-    "multistep",
-    "wizard",
-    "react-wizard",
-    "formik-wizard",
-    "step-wizard",
-    "react-formik-step-wizard",
-    "kennyhei"
-  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
