@@ -1,42 +1,36 @@
 import path from 'path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import terser from '@rollup/plugin-terser'
-import dts from 'vite-plugin-dts'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   return {
+    // Base path used in index.html
+    base: '/onboarder',
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
       }
     },
+    define: {
+      'process.env.NODE_ENV': JSON.stringify(mode)
+    },
     plugins: [
-      react(),
-      dts()
+      react()
     ],
-    // Exclude "public" folder from production build
-    publicDir: mode === 'development' ? 'public' : false,
     build: {
       minify: true,
       cssMinify: true,
-      sourcemap: true,
       lib: {
-        entry: path.resolve(__dirname, 'src/index.ts'),
+        entry: path.resolve(__dirname, 'src/main.tsx'),
         name: 'onboarder',
         formats: ['es'],
         fileName: (format) => `onboarder.${format}.js`
       },
       rollupOptions: {
-        // Excludes react from build file
-        external: ['react', 'react-dom', 'formik'],
-        output: {
-          globals: {
-            react: 'React'
-          }
-        },
-        plugins: [terser()]
+        input: {
+          app: './index.html'
+        }
       }
     }
   }

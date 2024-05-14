@@ -1,6 +1,5 @@
 import { useContext } from 'react'
-//import { useWizard } from '@/index'
-import { Wizard, useWizard } from 'react-formik-step-wizard'
+import { useWizard } from 'react-formik-step-wizard'
 
 import { AppContext } from '../main'
 
@@ -14,7 +13,7 @@ function Header() {
     <header className='pt-4 pb-3'>
       {/* Title, steps, source code link */}
       <div className='px-5 flex justify-between items-center prose max-w-none'>
-        <h3 className='mb-0 text-base sm:text-xl'>react-formik-step-wizard</h3>
+        <h3 className='mb-0 text-base sm:text-xl'>onboardatron-1</h3>
         <div className='flex items-center'>
           <div className='mr-3 text-sm'>
             <span className='hidden min-[400px]:inline'>Step</span> {stepNumber} / {totalSteps}

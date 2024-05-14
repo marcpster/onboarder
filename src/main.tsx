@@ -4,9 +4,7 @@ import steps from './config/steps'
 import StepWrapper from './components/StepWrapper'
 import Navigation from './components/Navigation'
 import Header from './components/Header'
-//import { Wizard } from '@/index'
-//import { Field, ErrorMessage } from 'formik'
-import { Wizard, useWizard } from 'react-formik-step-wizard'
+import { Wizard } from 'react-formik-step-wizard'
 import './styles/main.scss'
 
 interface AppContextValues {
@@ -22,7 +20,7 @@ function App() {
       <Wizard
         enableHash
         steps={steps}
-        onStepChanged={(fromStep, toStep, wizardValues) => {
+        onStepChanged={(fromStep: any, toStep: any, wizardValues: any) => {
           console.log('step changed', fromStep.id, toStep.id, wizardValues)
         }}
         header={<Header />}
