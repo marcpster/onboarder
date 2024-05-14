@@ -1,5 +1,5 @@
 import { ContactInfoSchema, validateUsername } from './validation'
-import { Values, WizardValues, StepConfig } from '@/types'
+import { Values, WizardValues, StepConfig } from 'react-formik-step-wizard'
 import { FormikHelpers } from 'formik'
 import StepEmailCheck from '../components/steps/StepEmailCheck'
 import StepAsync from '../components/steps/StepAsync'

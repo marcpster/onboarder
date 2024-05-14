@@ -1,6 +1,5 @@
 import { useContext } from 'react'
-//import { useWizard } from '@/index'
-import { Wizard, useWizard } from 'react-formik-step-wizard'
+import { useWizard } from 'react-formik-step-wizard'
 
 import { AppContext } from '../main'
 
