@@ -53,7 +53,7 @@ function DefaultStepContentRenderer({
               <Field
                 id={field}
                 name={field}
-                value={values[field]}
+                value={fields?.inputTypes[field] === 'checkbox' ? undefined: values[field] /* @MP: fix checkbox */}
                 type={fields?.inputTypes[field]}
                 placeholder={fields?.placeholders?.[field]}
                 {...getFieldConstraints(validationSchema?.fields?.[field], fields?.inputTypes[field])}

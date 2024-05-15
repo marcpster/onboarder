@@ -21,7 +21,7 @@ const steps: StepConfig[] = [
     // the step config object
     fields: {
       inputTypes: {
-        useSlack: 'text',
+        useSlack: 'checkbox',
         firstName: 'text',
         lastName: 'text',
         age: 'number',
