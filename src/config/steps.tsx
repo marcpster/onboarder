@@ -8,7 +8,7 @@ import StepFinal from '../components/steps/StepFinal'
 
 const steps: StepConfig[] = [
   {
-    id: 'ContactInfo',
+    id: 'Slack',
     initialValues: {
       firstName: 'John',
       lastName: 'Doe',
