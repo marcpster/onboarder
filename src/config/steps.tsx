@@ -10,7 +10,7 @@ const steps: StepConfig[] = [
   {
     id: 'StepSlack',
     initialValues: {
-      //useSlack: false,
+      useSlack: 'false',
       firstName: 'John',
       lastName: 'Doe',
       age: 30,
@@ -21,7 +21,7 @@ const steps: StepConfig[] = [
     // the step config object
     fields: {
       inputTypes: {
-        //useSlack: 'checkbox',
+        useSlack: 'text',
         firstName: 'text',
         lastName: 'text',
         age: 'number',
