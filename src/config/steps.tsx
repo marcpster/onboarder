@@ -8,8 +8,9 @@ import StepFinal from '../components/steps/StepFinal'
 
 const steps: StepConfig[] = [
   {
-    id: 'Slack',
+    id: 'StepSlack',
     initialValues: {
+      //useSlack: false,
       firstName: 'John',
       lastName: 'Doe',
       age: 30,
@@ -20,6 +21,7 @@ const steps: StepConfig[] = [
     // the step config object
     fields: {
       inputTypes: {
+        //useSlack: 'checkbox',
         firstName: 'text',
         lastName: 'text',
         age: 'number',
@@ -60,7 +62,7 @@ const steps: StepConfig[] = [
         return true
       }
       // Skip if email has been filled
-      return !!values.ContactInfo.email
+      return !!values.StepSlack.email
     }
   },
   {
