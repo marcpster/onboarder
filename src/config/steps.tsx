@@ -10,6 +10,7 @@ const steps: StepConfig[] = [
   {
     id: 'Step1',
     title: 'General Settings',
+    helpText: 'Select whether you would like to join our Slack channel and newsletter.',
 
     titles: {
       useSlack: 'Join Our Slack Channel'
