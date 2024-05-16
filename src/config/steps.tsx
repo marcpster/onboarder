@@ -8,7 +8,13 @@ import StepFinal from '../components/steps/StepFinal'
 
 const steps: StepConfig[] = [
   {
-    id: 'StepSlack',
+    id: 'Step1',
+    title: 'General Settings',
+
+    titles: {
+      useSlack: 'Join Our Slack Channel'
+    },
+
     initialValues: {
       useSlack: false,
       firstName: 'John',
@@ -62,7 +68,7 @@ const steps: StepConfig[] = [
         return true
       }
       // Skip if email has been filled
-      return !!values.StepSlack.email
+      return !!values.Step1.email
     }
   },
   {

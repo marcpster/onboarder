@@ -3,6 +3,7 @@ import { ErrorMessage, Field } from 'formik'
 interface Props {
   activeStep: any,
   initialValues: any,
+  titles: any,
   values: any
 }
 
@@ -12,9 +13,13 @@ function DefaultStepContentRenderer({
   values
 }: Props) {
 
-  function humanize(value: string) {
-    value = value[0].toUpperCase() + value.slice(1)
-    return value.replace(/[A-Z]/g, ' $&')
+  function humanize(field: string) {
+    field = field[0].toUpperCase() + field.slice(1)
+    return field.replace(/[A-Z]/g, ' $&')
+  }
+
+  function getTitle(field: string) {
+    return activeStep?.titles?.[field] || humanize(field);
   }
 
   function getFieldConstraints(yupSchema: any, fieldType: string) {
@@ -44,12 +49,12 @@ function DefaultStepContentRenderer({
 
   return (
     <div id='default' className='prose max-w-none'>
-      <h2>{humanize(activeStep.id)}</h2>
+      <h2>{activeStep.title}</h2>
       <p>{activeStep.helpText}</p>
       <div className='flex flex-row gap-6 flex-wrap'>
         {Object.keys(initialValues || {}).map(field => (
             <div key={field} className='grow shrink-0 basis-72'>
-              <label htmlFor={field} className='block mb-2 text-sm font-medium text-white'>{humanize(field)}</label>
+              <label htmlFor={field} className='block mb-2 text-sm font-medium text-white'>{getTitle(field)}</label>
               <ErrorMessage name={field}>
                 {msg => <div className='text-red-400'>{msg}</div>}
               </ErrorMessage>

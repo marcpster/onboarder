@@ -18,9 +18,9 @@ function Header() {
           <div className='mr-3 text-sm'>
             <span className='hidden min-[400px]:inline'>Step</span> {stepNumber} / {totalSteps}
           </div>
-          <a href='https://github.com/kennyhei/react-formik-step-wizard' target='_blank'>
+          {/* <a href='https://github.com/kennyhei/react-formik-step-wizard' target='_blank'>
             <img src={`${baseUrl}/github-mark-white.svg`} className='rounded-md w-9 my-0' />
-          </a>
+          </a> */}
         </div>
       </div>
       {/* Progress bar */}
