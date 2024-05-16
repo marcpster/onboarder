@@ -50,23 +50,58 @@ function DefaultStepContentRenderer({
         {Object.keys(initialValues || {}).map(field => (
             <div key={field} className='grow shrink-0 basis-72'>
               <label htmlFor={field} className='block mb-2 text-sm font-medium text-white'>{humanize(field)}</label>
-              <Field
-                id={field}
-                name={field}
-                value={values[field]}
-                type={fields?.inputTypes[field]}
-                placeholder={fields?.placeholders?.[field]}
-                {...getFieldConstraints(validationSchema?.fields?.[field], fields?.inputTypes[field])}
-                className='bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400'
-              />
               <ErrorMessage name={field}>
                 {msg => <div className='text-red-400'>{msg}</div>}
               </ErrorMessage>
-            </div>
+              <MyField 
+                id={field}
+                name={field}
+                value={values[field] /* @MP: ignore for checkboxes */}
+                type={fields?.inputTypes[field]} 
+                placeholder={fields?.placeholders?.[field]}
+                constraints={getFieldConstraints(validationSchema?.fields?.[field], fields?.inputTypes[field])}
+                />
+              </div>
         ))}
       </div>
     </div>
   )
+}
+
+/**
+ * Create a Formix Field object
+ * @param props 
+ * @returns Formix <Field/> object
+ */
+function MyField (props: any) {
+  const {id, type, value, placeholder, constraints} = props;
+
+  console.log(props)
+
+  if (type === 'checkbox') {
+
+    // Checkboxes slight speccial case, e.g. break if "value" attribute set
+    // https://formik.org/docs/examples/checkboxes 
+    return (
+      <Field       
+        id={id}
+        name={id}
+        type="checkbox" className="checkbox" />
+    );
+  }
+  else {
+    return (
+      <Field
+      id={id}
+      name={id}
+      value={value /* @MP: fix checkbox */}
+      type={type}
+      placeholder={placeholder}
+      className={'bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400'}
+      {...constraints}
+      />
+    );
+  }
 }
 
 export default DefaultStepContentRenderer
