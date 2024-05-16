@@ -47,7 +47,7 @@ const steps: StepConfig[] = [
     disableNextOnErrors: true
   },
   {
-    id: 'Username',
+    id: 'Step2',
     helpText: 'Username should include your first name. This step is to demonstrate that we can validate field based on what user typed in the previous step.',
     initialValues: {
       username: 'mrjohn',
