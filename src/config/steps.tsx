@@ -10,11 +10,11 @@ const steps: StepConfig[] = [
   {
     id: 'StepSlack',
     initialValues: {
-      useSlack: 'false',
+      useSlack: false,
       firstName: 'John',
       lastName: 'Doe',
       age: 30,
-      email: ''
+      email: 'mp@test.co'
     },
     // attrs defined under "fields" are for custom step renderer made
     // just for this demo folder, otherwise these aren't part of
@@ -41,7 +41,7 @@ const steps: StepConfig[] = [
     id: 'Username',
     helpText: 'Username should include your first name. This step is to demonstrate that we can validate field based on what user typed in the previous step.',
     initialValues: {
-      username: '',
+      username: 'mrjohn',
     },
     fields: {
       inputTypes: {
