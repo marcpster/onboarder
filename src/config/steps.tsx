@@ -17,6 +17,7 @@ const steps: StepConfig[] = [
 
     initialValues: {
       useSlack: false,
+      useNewsletter: true,
       firstName: 'John',
       lastName: 'Doe',
       age: 30,
@@ -28,6 +29,8 @@ const steps: StepConfig[] = [
     fields: {
       inputTypes: {
         useSlack: 'checkbox',
+        useNewsletter: 'checkbox',
+
         firstName: 'text',
         lastName: 'text',
         age: 'number',
