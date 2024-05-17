@@ -9,13 +9,13 @@ const CustomInput = (props: any) => {
   const [field, meta] = useField(props);
 
   return (
-    <div>
-      <label htmlFor={props.id || props.name}>{props.label}</label>
+    <>
+      {/* <label htmlFor={props.id || props.name}>{props.label}</label> */}
       <input {...field} {...props} />
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
-    </div>
+    </>
   );
 };
 
