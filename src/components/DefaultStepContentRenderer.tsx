@@ -1,4 +1,5 @@
 import { ErrorMessage, Field } from 'formik'
+import CustomInput from '@/components/CustomInput'
 
 interface Props {
   activeStep: any,
@@ -88,10 +89,12 @@ function MyField (props: any) {
     // Checkboxes slight speccial case, e.g. break if "value" attribute set
     // https://formik.org/docs/examples/checkboxes 
     return (
-      <Field       
-        id={id}
-        name={id}
-        type="checkbox" className="checkbox" />
+      <CustomInput label="custName" name="custname" type="text" />
+
+      // <Field       
+      //   id={id}
+      //   name={id}
+      //   type="checkbox" className="checkbox" />
     );
   }
   else {
