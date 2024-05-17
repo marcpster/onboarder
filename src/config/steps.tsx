@@ -1,4 +1,4 @@
-import { ContactInfoSchema, validateUsername } from './validation'
+import { Step1Schema, validateUsername } from './validation'
 //@ts-ignore
 import { Values, WizardValues, StepConfig } from 'react-formik-step-wizard'
 import { FormikHelpers } from 'formik'
@@ -33,7 +33,7 @@ const steps: StepConfig[] = [
         useNewsletter: 'checkbox',
 
         firstName: 'text',
-        lastName: 'text',
+        lastName: 'custom-text',
         age: 'number',
         email: 'email'
       },
@@ -44,7 +44,7 @@ const steps: StepConfig[] = [
         email: 'e.g. john@doe.com'
       }
     },
-    validationSchema: ContactInfoSchema,
+    validationSchema: Step1Schema,
     disableNextOnErrors: true
   },
   {

@@ -89,12 +89,18 @@ function MyField (props: any) {
     // Checkboxes slight speccial case, e.g. break if "value" attribute set
     // https://formik.org/docs/examples/checkboxes 
     return (
-      <CustomInput label={id} name={id} type="text" />
+      // <CustomInput label={id} name={id} type="text" />
 
-      // <Field       
-      //   id={id}
-      //   name={id}
-      //   type="checkbox" className="checkbox" />
+      <Field       
+        id={id}
+        name={id}
+        type="checkbox" className="checkbox" />
+    );
+  }
+  else if (type === 'custom-text') {
+    // Here is our custom text field that we are testing
+    return (
+      <CustomInput label={id} name={id} type="text" />
     );
   }
   else {
