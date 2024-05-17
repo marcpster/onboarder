@@ -105,15 +105,13 @@ function MyField (props: any) {
   }
   else if (type === 'select') {
     // Select
-    //const [selectedPlayer1,setSelectedPlayer1] = useState('')
-    //const [selectedPlayer2,setSelectedPlayer2] = useState('')
-    const { values, setFieldValue } = useFormikContext();
+
+    const { setFieldValue } = useFormikContext();
 
     let options = [
       {id: 'o1', title: 'Option 1', disabled: false},
       {id: 'o2', title: 'Option 2', disabled: false}
     ];
-    //onChange={(e:any) => setSelectedPlayer1(e.target.value)}
     //value={selectedPlayer1}
 
     return (
