@@ -1,6 +1,5 @@
-import { ErrorMessage, Field } from 'formik'
+import { ErrorMessage, Field, useFormikContext } from 'formik'
 import CustomInput from '@/components/CustomInput'
-import {useState} from "react";
 
 interface Props {
   activeStep: any,
@@ -106,19 +105,22 @@ function MyField (props: any) {
   }
   else if (type === 'select') {
     // Select
-    const [selectedPlayer1,setSelectedPlayer1] = useState('')
-    const [selectedPlayer2,setSelectedPlayer2] = useState('')
+    //const [selectedPlayer1,setSelectedPlayer1] = useState('')
+    //const [selectedPlayer2,setSelectedPlayer2] = useState('')
+    const { values, setFieldValue } = useFormikContext();
 
     let options = [
-      {id: '1', title: 'Option 1', disabled: false},
-      {id: '2', title: 'Option 2', disabled: true}
+      {id: 'o1', title: 'Option 1', disabled: false},
+      {id: 'o2', title: 'Option 2', disabled: false}
     ];
+    //onChange={(e:any) => setSelectedPlayer1(e.target.value)}
+    //value={selectedPlayer1}
 
     return (
       <Field as="select" 
         name={id}
-        onChange={(e:any) => setSelectedPlayer1(e.target.value)}
-        value={selectedPlayer1}>
+        onChange={(e:any) => setFieldValue(id, e.target.value)}
+        >
 
         <option disabled value="">(Select a player 1)</option>
         {options && options.map(op => 

@@ -19,7 +19,7 @@ const steps: StepConfig[] = [
     initialValues: {
       useSlack: false,
       useNewsletter: true,
-      firstName: 'John',
+      firstName: 'o1',
       lastName: 'Doe',
       age: 30,
       email: 'mp@test.co'
@@ -32,7 +32,7 @@ const steps: StepConfig[] = [
         useSlack: 'checkbox',
         useNewsletter: 'checkbox',
 
-        firstName: 'text',
+        firstName: 'select',
         lastName: 'custom-text',
         age: 'number',
         email: 'email'
