@@ -1,5 +1,6 @@
 import { ErrorMessage, Field } from 'formik'
 import CustomInput from '@/components/CustomInput'
+import {useState} from "react";
 
 interface Props {
   activeStep: any,
@@ -101,6 +102,29 @@ function MyField (props: any) {
     // Here is our custom text field that we are testing
     return (
       <CustomInput label={id} name={id} type="text" />
+    );
+  }
+  else if (type === 'select') {
+    // Select
+    const [selectedPlayer1,setSelectedPlayer1] = useState('')
+    const [selectedPlayer2,setSelectedPlayer2] = useState('')
+
+    let options = [
+      {id: '1', title: 'Option 1', disabled: false},
+      {id: '2', title: 'Option 2', disabled: true}
+    ];
+
+    return (
+      <Field as="select" 
+        name={id}
+        onChange={(e:any) => setSelectedPlayer1(e.target.value)}
+        value={selectedPlayer1}>
+
+        <option disabled value="">(Select a player 1)</option>
+        {options && options.map(op => 
+            <option disabled={op.disabled} value={op.id} key={op.id}>{op.title}</option>
+        )}
+      </Field>
     );
   }
   else {
