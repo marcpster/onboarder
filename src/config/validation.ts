@@ -5,7 +5,7 @@ import { WizardValues, Values } from "react-formik-step-wizard"
 /* Schemas for <Formik validationSchema> */
 
 export const Step1Schema = Yup.object({
-  firstName: Yup.string().required('This field is required'),
+  area: Yup.string().required('This field is required'),
   lastName: Yup.string().required('This custom field is required'),
   age: Yup.number().min(0).positive().max(125).required('This field is required'),
   email: Yup.string().email(),
@@ -23,8 +23,8 @@ export function validateUsername(stepValues: Values, values: WizardValues) {
   const errors: any = {}
   if (!stepValues.username) {
     errors.username = 'This field is required'
-  } else if (!stepValues.username.toLowerCase().includes(values.Step1.firstName.toLowerCase())) {
-    errors.username = `Username should contain your first name (${values.Step1.firstName})`
+  } else if (!stepValues.username.toLowerCase().includes(values.Step1.area.toLowerCase())) {
+    errors.username = `Username should contain your first name (${values.Step1.area})`
   }
   return errors
 }

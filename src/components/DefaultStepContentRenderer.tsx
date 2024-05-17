@@ -109,8 +109,10 @@ function MyField (props: any) {
     const { setFieldValue } = useFormikContext();
 
     let options = [
-      {id: 'o1', title: 'Option 1', disabled: false},
-      {id: 'o2', title: 'Option 2', disabled: false}
+      {id: '', title: '(Select an Area)', disabled: true},
+      {id: 'student', title: 'Student', disabled: false},
+      {id: 'eng', title: 'Engineering', disabled: false},
+      {id: 'mlops', title: 'MLOps', disabled: false}
     ];
     //value={selectedPlayer1}
 
@@ -120,7 +122,6 @@ function MyField (props: any) {
         onChange={(e:any) => setFieldValue(id, e.target.value)}
         >
 
-        <option disabled value="">(Select a player 1)</option>
         {options && options.map(op => 
             <option disabled={op.disabled} value={op.id} key={op.id}>{op.title}</option>
         )}

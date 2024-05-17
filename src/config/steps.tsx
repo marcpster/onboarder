@@ -13,13 +13,14 @@ const steps: StepConfig[] = [
     helpText: 'Select whether you would like to join our Slack channel and newsletter.',
 
     titles: {
-      useSlack: 'Join Our Slack Channel'
+      useSlack: 'Join Our Slack Channel',
+      area: 'Area of Interest'
     },
 
     initialValues: {
-      useSlack: false,
+      useSlack: true,
       useNewsletter: true,
-      firstName: 'o1',
+      area: '',
       lastName: 'Doe',
       age: 30,
       email: 'mp@test.co'
@@ -28,17 +29,17 @@ const steps: StepConfig[] = [
     // just for this demo folder, otherwise these aren't part of
     // the step config object
     fields: {
+
       inputTypes: {
         useSlack: 'checkbox',
         useNewsletter: 'checkbox',
-
-        firstName: 'select',
+        area: 'select',
         lastName: 'custom-text',
         age: 'number',
         email: 'email'
       },
       placeholders: {
-        firstName: 'e.g. John',
+        area: 'e.g. John',
         lastName: 'e.g. Doe',
         age: 'e.g. 18',
         email: 'e.g. john@doe.com'
