@@ -88,13 +88,16 @@ function MyField (props: any) {
 
     // Checkboxes slight speccial case, e.g. break if "value" attribute set
     // https://formik.org/docs/examples/checkboxes 
-    return (
-      // <CustomInput label={id} name={id} type="text" />
 
+    // show both styles
+    const className = id === 'useSlack' ? 'checkbox' : 'toggle toggle-sm bg-gray-300 toggle-success';
+
+    return (
       <Field       
         id={id}
         name={id}
-        type="checkbox" className="checkbox" />
+        className={className}
+        type="checkbox"  />
     );
   }
   else if (type === 'custom-text') {
