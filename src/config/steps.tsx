@@ -1,4 +1,4 @@
-import { ContactInfoSchema, validateUsername } from './validation'
+import { Step1Schema, validateUsername } from './validation'
 //@ts-ignore
 import { Values, WizardValues, StepConfig } from 'react-formik-step-wizard'
 import { FormikHelpers } from 'formik'
@@ -8,10 +8,19 @@ import StepFinal from '../components/steps/StepFinal'
 
 const steps: StepConfig[] = [
   {
-    id: 'StepSlack',
+    id: 'Step1',
+    title: 'General Settings',
+    helpText: 'Select whether you would like to join our Slack channel and newsletter.',
+
+    titles: {
+      useSlack: 'Join Our Slack Channel',
+      area: 'Area of Interest'
+    },
+
     initialValues: {
-      useSlack: false,
-      firstName: 'John',
+      useSlack: true,
+      useNewsletter: true,
+      area: '',
       lastName: 'Doe',
       age: 30,
       email: 'mp@test.co'
@@ -20,25 +29,27 @@ const steps: StepConfig[] = [
     // just for this demo folder, otherwise these aren't part of
     // the step config object
     fields: {
+
       inputTypes: {
         useSlack: 'checkbox',
-        firstName: 'text',
-        lastName: 'text',
+        useNewsletter: 'checkbox',
+        area: 'select',
+        lastName: 'custom-text',
         age: 'number',
         email: 'email'
       },
       placeholders: {
-        firstName: 'e.g. John',
+        area: 'e.g. John',
         lastName: 'e.g. Doe',
         age: 'e.g. 18',
         email: 'e.g. john@doe.com'
       }
     },
-    validationSchema: ContactInfoSchema,
+    validationSchema: Step1Schema,
     disableNextOnErrors: true
   },
   {
-    id: 'Username',
+    id: 'Step2',
     helpText: 'Username should include your first name. This step is to demonstrate that we can validate field based on what user typed in the previous step.',
     initialValues: {
       username: 'mrjohn',
@@ -62,7 +73,7 @@ const steps: StepConfig[] = [
         return true
       }
       // Skip if email has been filled
-      return !!values.StepSlack.email
+      return !!values.Step1.email
     }
   },
   {

@@ -1,8 +1,10 @@
-import { ErrorMessage, Field } from 'formik'
+import { ErrorMessage, Field, useFormikContext } from 'formik'
+import CustomInput from '@/components/CustomInput'
 
 interface Props {
   activeStep: any,
   initialValues: any,
+  titles: any,
   values: any
 }
 
@@ -12,9 +14,13 @@ function DefaultStepContentRenderer({
   values
 }: Props) {
 
-  function humanize(value: string) {
-    value = value[0].toUpperCase() + value.slice(1)
-    return value.replace(/[A-Z]/g, ' $&')
+  function humanize(field: string) {
+    field = field[0].toUpperCase() + field.slice(1)
+    return field.replace(/[A-Z]/g, ' $&')
+  }
+
+  function getTitle(field: string) {
+    return activeStep?.titles?.[field] || humanize(field);
   }
 
   function getFieldConstraints(yupSchema: any, fieldType: string) {
@@ -44,12 +50,12 @@ function DefaultStepContentRenderer({
 
   return (
     <div id='default' className='prose max-w-none'>
-      <h2>{humanize(activeStep.id)}</h2>
+      <h2>{activeStep.title}</h2>
       <p>{activeStep.helpText}</p>
       <div className='flex flex-row gap-6 flex-wrap'>
         {Object.keys(initialValues || {}).map(field => (
             <div key={field} className='grow shrink-0 basis-72'>
-              <label htmlFor={field} className='block mb-2 text-sm font-medium text-white'>{humanize(field)}</label>
+              <label htmlFor={field} className='block mb-2 text-sm font-medium text-white'>{getTitle(field)}</label>
               <ErrorMessage name={field}>
                 {msg => <div className='text-red-400'>{msg}</div>}
               </ErrorMessage>
@@ -82,11 +88,47 @@ function MyField (props: any) {
 
     // Checkboxes slight speccial case, e.g. break if "value" attribute set
     // https://formik.org/docs/examples/checkboxes 
+
+    // show both styles
+    const className = id === 'useSlack' ? 'checkbox' : 'toggle toggle-sm bg-gray-300 toggle-success';
+
     return (
       <Field       
         id={id}
         name={id}
-        type="checkbox" className="checkbox" />
+        className={className}
+        type="checkbox"  />
+    );
+  }
+  else if (type === 'custom-text') {
+    // Here is our custom text field that we are testing
+    return (
+      <CustomInput label={id} name={id} type="text" />
+    );
+  }
+  else if (type === 'select') {
+    // Select
+
+    const { setFieldValue } = useFormikContext();
+
+    let options = [
+      {id: '', title: '(Select an Area)', disabled: true},
+      {id: 'student', title: 'Student', disabled: false},
+      {id: 'eng', title: 'Engineering', disabled: false},
+      {id: 'mlops', title: 'MLOps', disabled: false}
+    ];
+    //value={selectedPlayer1}
+
+    return (
+      <Field as="select" 
+        name={id}
+        onChange={(e:any) => setFieldValue(id, e.target.value)}
+        >
+
+        {options && options.map(op => 
+            <option disabled={op.disabled} value={op.id} key={op.id}>{op.title}</option>
+        )}
+      </Field>
     );
   }
   else {
