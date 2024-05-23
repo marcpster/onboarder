@@ -1,13 +1,10 @@
-import { useContext } from 'react'
 import { useWizard } from 'react-formik-step-wizard'
 
-import { AppContext } from '../main'
-
 function Header() {
-  const { isAnimated, setIsAnimated } = useContext(AppContext)
+  const isAnimated = true;
+
   const { stepNumber, totalSteps } = useWizard()
   const completed = `${((stepNumber - 1) / (totalSteps - 1)) * 100}%`
-  const baseUrl = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL
 
   return (
     <header className='pt-4 pb-3'>
@@ -18,9 +15,6 @@ function Header() {
           <div className='mr-3 text-sm'>
             <span className='hidden min-[400px]:inline'>Step</span> {stepNumber} / {totalSteps}
           </div>
-          {/* <a href='https://github.com/kennyhei/react-formik-step-wizard' target='_blank'>
-            <img src={`${baseUrl}/github-mark-white.svg`} className='rounded-md w-9 my-0' />
-          </a> */}
         </div>
       </div>
       {/* Progress bar */}
