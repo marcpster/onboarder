@@ -82,7 +82,7 @@ function DefaultStepContentRenderer({
 function MyField (props: any) {
   const {id, type, value, placeholder, constraints} = props;
 
-  console.log(props)
+  //console.log(props)
 
   if (type === 'checkbox') {
 

@@ -8,6 +8,51 @@ import StepFinal from '../components/steps/StepFinal'
 
 const steps: StepConfig[] = [
   {
+    id: 'StepEmail',
+    title: 'Getting Your Details',
+    helpText: 'Please enter your email',
+
+    titles: {
+    },
+    initialValues: {
+      email: ''
+    },
+    fields: {
+      inputTypes: {
+        email: 'email'
+      },
+      placeholders: {
+        email: 'e.g. john@doe.com'
+      }
+    },
+    disableNextOnErrors: true,
+
+    onSubmit: async (stepValues: Values, _allValues: WizardValues, _actions: FormikHelpers<any>) => {
+      
+      console.log(stepValues)
+
+      const response = await fetch(
+        "https://cors-anywhere.herokuapp.com/https://api.mlops.community/v2/contact_enrichment", 
+         { 
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${import.meta.env.VITE_MLOPS_APP_KEY}`,
+          },
+          body: JSON.stringify({
+            "clearbit": true,
+            "apollo": true,
+            "proxycurl": true,
+            "email": stepValues.email
+          }),
+      });
+      const res = await response.json();
+      console.log(res);
+
+      return stepValues
+    }    
+  },
+  {
     id: 'Step1',
     title: 'General Settings',
     helpText: 'Select whether you would like to join our Slack channel and newsletter.',
