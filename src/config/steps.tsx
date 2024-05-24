@@ -6,6 +6,30 @@ import StepEmailCheck from '../components/steps/StepEmailCheck'
 import StepAsync from '../components/steps/StepAsync'
 import StepFinal from '../components/steps/StepFinal'
 
+
+async function postJSON(url: string, headers: any, bodyJson: any) {
+  const response = await fetch(
+    url, 
+    { 
+      method: "POST",
+      headers,
+      body: JSON.stringify(bodyJson),
+  }).catch(e => console.error('error x', e));
+
+  // Get the JSON, if it is present
+  let json: any = null;
+  try {
+    json = await response?.json();
+  } catch (e) {
+    console.log('err')
+  }
+
+  return {
+    status: response?.status,
+    json
+  };
+}
+
 const steps: StepConfig[] = [
   {
     id: 'StepEmail',
@@ -36,36 +60,25 @@ const steps: StepConfig[] = [
         return errors;
       }
 
-      const response = await fetch(
-        "https://cors-anywhere.herokuapp.com/https://api.mlops.community/v2/contact_enrichment", 
-        { 
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${import.meta.env.VITE_MLOPS_APP_KEY}`,
-          },
-          body: JSON.stringify({
-            "clearbit": true,
-            "apollo": true,
-            "proxycurl": true,
-            "email": stepValues.email
-          }),
-      }).catch(e => console.error('error x', e));
+      const result = await postJSON(
+        "https://cors-anywhere.herokuapp.com/https://api.mlops.community/v2/contact_enrichment",
+        {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${import.meta.env.VITE_MLOPS_APP_KEY}`,
+        },
+        {
+          "clearbit": true,
+          "apollo": true,
+          "proxycurl": true,
+          "email": stepValues.email
+        }
+      );
 
-      // Get the JSON, if it is present
-      let json: any = null;
-      try {
-        json = await response?.json();
-      } catch (e) {
-        console.log('err')
+      if (result.status === 400) {
+        errors.email = result.json?.message;
       }
-
-
-      if (response?.status === 400) {
-        errors.email = json && json.message;
-      }
-      else if (response?.status !== 200) {
-        errors.email = `Invalid response: ${response?.status}`
+      else if (result.status !== 200) {
+        errors.email = `Invalid response: ${result?.status}`
       }
 
       // } else if (!stepValues.username.toLowerCase().includes(values.Step1.area.toLowerCase())) {
