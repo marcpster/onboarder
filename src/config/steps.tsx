@@ -39,11 +39,13 @@ const steps: StepConfig[] = [
     titles: {
     },
     initialValues: {
-      email: ''
+      email: '',
+      //linkedin: ''
     },
     fields: {
       inputTypes: {
-        email: 'email'
+        email: 'email',
+        linkedin: 'hidden'
       },
       placeholders: {
         email: 'e.g. john@doe.com'
@@ -83,6 +85,8 @@ const steps: StepConfig[] = [
       else if (result.status !== 200) {
         errors.email = `Server response: ${result?.status}`
       }
+      //TEMP=> ENABLE LI
+      //stepValues.linkedin = 'https://www.linkedin.com/in/to_do'
 
       return errors
     },
@@ -93,28 +97,36 @@ const steps: StepConfig[] = [
     onSubmit: async (stepValues: Values, _allValues: WizardValues, _actions: FormikHelpers<any>) => {
       
       console.log(stepValues)
-
-      // const response = await fetch(
-      //   "https://cors-anywhere.herokuapp.com/https://api.mlops.community/v2/contact_enrichmentx", 
-      //    { 
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       "Authorization": `Bearer ${import.meta.env.VITE_MLOPS_APP_KEY}`,
-      //     },
-      //     body: JSON.stringify({
-      //       "clearbit": true,
-      //       "apollo": true,
-      //       "proxycurl": true,
-      //       "email": stepValues.email
-      //     }),
-      // });
-      // const res = await response.json();
-      // console.log(res);
-
       return stepValues
     }    
   },
+
+  {
+    id: 'StepLinkedIn',
+    titles: {
+    },
+    initialValues: {
+      linkedin: ''
+    },
+    fields: {
+      inputTypes: {
+        linkedin: 'url'
+      },
+      placeholders: {
+        linkedin: 'e.g. https://www.linkedin.com/in/williamhgates/'
+      }
+    },
+
+    //hideNext: true,
+    //hidePrevious: true,
+    shouldSkip: (values: WizardValues, direction: number) => {
+
+      // Skip if linkedin has been found
+      return !!values.StepEmail.linkedin
+    }
+  },
+
+
   {
     id: 'Step1',
     title: 'General Settings',
