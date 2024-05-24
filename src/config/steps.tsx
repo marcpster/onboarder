@@ -27,13 +27,18 @@ const steps: StepConfig[] = [
     },
     disableNextOnErrors: true,
 
-    onSubmit: async (stepValues: Values, _allValues: WizardValues, _actions: FormikHelpers<any>) => {
-      
-      console.log(stepValues)
+    validate: async (stepValues: Values, values: WizardValues) => {
+      console.log('test2')
+    
+      const errors: any = {}
+      if (!stepValues.email) {
+        errors.email = 'Please enter your email';
+        return errors;
+      }
 
       const response = await fetch(
         "https://cors-anywhere.herokuapp.com/https://api.mlops.community/v2/contact_enrichment", 
-         { 
+        { 
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -45,9 +50,54 @@ const steps: StepConfig[] = [
             "proxycurl": true,
             "email": stepValues.email
           }),
-      });
-      const res = await response.json();
-      console.log(res);
+      }).catch(e => console.error('error x', e));
+
+      // Get the JSON, if it is present
+      let json: any = null;
+      try {
+        json = await response?.json();
+      } catch (e) {
+        console.log('err')
+      }
+
+
+      if (response?.status === 400) {
+        errors.email = json && json.message;
+      }
+      else if (response?.status !== 200) {
+        errors.email = `Invalid response: ${response?.status}`
+      }
+
+      // } else if (!stepValues.username.toLowerCase().includes(values.Step1.area.toLowerCase())) {
+      //   errors.username = `Username should contain your first name (${values.Step1.area})`
+      // }
+      return errors
+    },
+
+    validateOnBlur: false,
+    validateOnChange: false,
+
+    onSubmit: async (stepValues: Values, _allValues: WizardValues, _actions: FormikHelpers<any>) => {
+      
+      console.log(stepValues)
+
+      // const response = await fetch(
+      //   "https://cors-anywhere.herokuapp.com/https://api.mlops.community/v2/contact_enrichmentx", 
+      //    { 
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       "Authorization": `Bearer ${import.meta.env.VITE_MLOPS_APP_KEY}`,
+      //     },
+      //     body: JSON.stringify({
+      //       "clearbit": true,
+      //       "apollo": true,
+      //       "proxycurl": true,
+      //       "email": stepValues.email
+      //     }),
+      // });
+      // const res = await response.json();
+      // console.log(res);
 
       return stepValues
     }    
