@@ -6,8 +6,8 @@ import { WizardValues, Values } from "react-formik-step-wizard"
 
 export const StepGeneralSchema = Yup.object({
   area: Yup.string().required('This field is required'),
-  lastName: Yup.string().required('This custom field is required'),
-  age: Yup.number().min(0).positive().max(125).required('This field is required'),
+  //lastName: Yup.string().required('This custom field is required'),
+  //age: Yup.number().min(0).positive().max(125).required('This field is required'),
   email: Yup.string().email(),
   useSlack: Yup.boolean().oneOf([true],'Testing checkbox validation')
 })

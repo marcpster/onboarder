@@ -163,16 +163,15 @@ const steps: StepConfig[] = [
 
     titles: {
       useSlack: 'Join Our Slack Channel',
-      area: 'Area of Interest'
+      // area: 'Area of Interest'
     },
 
     initialValues: {
       useSlack: true,
       useNewsletter: true,
       area: '',
-      lastName: 'Doe',
-      age: 30,
-      // email: 'mp@test.co'
+      // lastName: 'Doe',
+      // age: 30,
     },
     // attrs defined under "fields" are for custom step renderer made
     // just for this demo folder, otherwise these aren't part of
@@ -184,13 +183,13 @@ const steps: StepConfig[] = [
         useNewsletter: 'checkbox',
         area: 'select',
         lastName: 'custom-text',
-        age: 'number',
+        // age: 'number',
         // email: 'email'
       },
       placeholders: {
         area: 'e.g. John',
         lastName: 'e.g. Doe',
-        age: 'e.g. 18',
+        // age: 'e.g. 18',
         // email: 'e.g. john@doe.com'
       }
     },
