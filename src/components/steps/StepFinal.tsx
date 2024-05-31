@@ -23,8 +23,8 @@ function StepFinal() {
     <div className='prose prose-neutral max-w-none'>
       <h2>Congratulations!</h2>
       <div className='flex flex-wrap gap-4 justify-between'>
-        <p className='my-0'>You did it <b>{values.Step2.username}</b>! 🎉<br/>Here's your input:</p>
-        <button className='btn' onClick={toggle} type='button'>Toggle hideNext</button>
+        <p className='my-0'>🎉 Here's your input:</p>
+        {/* <button className='btn' onClick={toggle} type='button'>Toggle hideNext</button> */}
       </div>
       <code className='text-sm sm:text-base bg-transparent'>
         <pre className='mt-0'>

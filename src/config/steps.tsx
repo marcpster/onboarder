@@ -48,7 +48,8 @@ const steps: StepConfig[] = [
     fields: {
       inputTypes: {
         email: 'email',
-        linkedin: 'hidden'
+        linkedin: 'hidden',
+        emailChecked: false
       },
       placeholders: {
         email: 'e.g. john@doe.com'
@@ -106,6 +107,30 @@ const steps: StepConfig[] = [
       return stepValues
     }    
   },
+
+
+  {
+    id: 'EmailCheck',
+    component: <StepEmailCheck />,
+    hideNext: true,
+    hidePrevious: true,
+    shouldSkip: (values: WizardValues, direction: number) => {
+
+      if (values.StepEmail.emailChecked) {
+        return true;
+      }
+      values.StepEmail.emailChecked = true;
+
+      // Skip if we click "Previous" in "StepAsync"
+      if (direction === -1) {
+        return true
+      }
+      // Skip if email has been filled
+      return false //!!values.Step1.email
+    }
+  },
+
+
 
   {
     id: 'StepLinkedIn',
@@ -174,43 +199,32 @@ const steps: StepConfig[] = [
     validationSchema: Step1Schema,
     disableNextOnErrors: true
   },
-  {
-    id: 'Step2',
-    helpText: 'Username should include your first name. This step is to demonstrate that we can validate field based on what user typed in the previous step.',
-    initialValues: {
-      username: 'mrjohn',
-    },
-    fields: {
-      inputTypes: {
-        username: 'text',
-      }
-    },
-    validate: validateUsername,
-    disableNextOnErrors: true
-  },
-  {
-    id: 'EmailCheck',
-    component: <StepEmailCheck />,
-    hideNext: true,
-    hidePrevious: true,
-    shouldSkip: (values: WizardValues, direction: number) => {
-      // Skip if we click "Previous" in "StepAsync"
-      if (direction === -1) {
-        return true
-      }
-      // Skip if email has been filled
-      return !!values.Step1.email
-    }
-  },
-  {
-    id: 'Async',
-    component: <StepAsync />,
-    onSubmit: async (stepValues: Values, _allValues: WizardValues, _actions: FormikHelpers<any>) => {
-      const delay = (ms: number) => new Promise(res => setTimeout(res, ms))
-      await delay(2000)
-      return stepValues
-    }
-  },
+
+  // {
+  //   id: 'Step2',
+  //   helpText: 'Username should include your first name. This step is to demonstrate that we can validate field based on what user typed in the previous step.',
+  //   initialValues: {
+  //     username: 'mrjohn',
+  //   },
+  //   fields: {
+  //     inputTypes: {
+  //       username: 'text',
+  //     }
+  //   },
+  //   validate: validateUsername,
+  //   disableNextOnErrors: true
+  // },
+
+  // {
+  //   id: 'Async',
+  //   component: <StepAsync />,
+  //   onSubmit: async (stepValues: Values, _allValues: WizardValues, _actions: FormikHelpers<any>) => {
+  //     const delay = (ms: number) => new Promise(res => setTimeout(res, ms))
+  //     await delay(2000)
+  //     return stepValues
+  //   }
+  // },
+
   {
     id: 'Final',
     component: <StepFinal />,
