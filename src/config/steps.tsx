@@ -63,7 +63,7 @@ const steps: StepConfig[] = [
       }
 
       const result = await postJSON({
-          url: "https://cors-anywhere.herokuapp.com/https://api.mlops.community/v2/contact_enrichment", 
+          url: "/api/v2/contact_enrichment", 
           headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${import.meta.env.VITE_MLOPS_APP_KEY}`,
@@ -86,7 +86,7 @@ const steps: StepConfig[] = [
         errors.email = `Server response: ${result?.status}`
       }
       //TEMP=> ENABLE LI
-      //stepValues.linkedin = 'https://www.linkedin.com/in/to_do'
+      stepValues.linkedin = 'https://www.linkedin.com/in/to_do'
 
       return errors
     },

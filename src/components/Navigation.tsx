@@ -49,7 +49,7 @@ function Navigation() {
                   <ClipLoader size={11} color='#757575' />
                 </span>
               )}
-              <span>Next</span>
+              <span>Next Bit</span>
               <BsArrowRight className='w-8 h-8 fill-current' />
             </button>
           </div>
