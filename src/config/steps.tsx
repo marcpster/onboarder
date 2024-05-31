@@ -6,6 +6,8 @@ import StepEmailCheck from '../components/steps/StepEmailCheck'
 import StepAsync from '../components/steps/StepAsync'
 import StepFinal from '../components/steps/StepFinal'
 import { useWaiting } from '@/hooks/useWaiting'
+// Emitting an event from anywhere in the application
+import eventEmitter from '@/eventEmitter';
 
 /**
  * Utility wrapper for fetch 
@@ -32,15 +34,6 @@ async function postJSON(options: Options) {
 }
 
 const steps: StepConfig[] = [
-  {
-    id: 'Async',
-    component: <StepAsync />,
-    onSubmit: async (stepValues: Values, _allValues: WizardValues, _actions: FormikHelpers<any>) => {
-      const delay = (ms: number) => new Promise(res => setTimeout(res, ms))
-      await delay(2000)
-      return stepValues
-    }
-  },
   {
     id: 'StepEmail',
     title: 'Getting Your Details',
@@ -71,9 +64,11 @@ const steps: StepConfig[] = [
         errors.email = 'Please enter your email';
         return errors;
       }
-      const [isWaiting, setWaitingState] = useWaiting();
+      // const [isWaiting, setWaitingState] = useWaiting();
+      // setWaitingState(true);
 
-      setWaitingState(true);
+      eventEmitter.emit('myEvent', { someData: 'data' });
+
 
       const result = await postJSON({
           url: "/api/v2/contact_enrichment", 

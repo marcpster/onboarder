@@ -4,7 +4,8 @@ import { useFormikContext } from 'formik'
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
 import ClipLoader from 'react-spinners/ClipLoader'
 
-import { useWaiting } from '../hooks/useWaiting'
+import eventEmitter from '@/eventEmitter';
+import { useState, useEffect } from 'react';
 
 function Navigation() {
   let {
@@ -21,7 +22,18 @@ function Navigation() {
   const { isValid, submitForm } = useFormikContext()
   disableNext = isLoading || disableNext || (disableNextOnErrors && !isValid)
 
-  const [isWaiting, setWaitingState] = useWaiting();
+  const [isWaiting, setisWaiting] = useState(false);  
+
+  useEffect(() => {
+
+    eventEmitter.on('myEvent', (data: any) => {
+      console.log('Event received:', data);
+      setisWaiting(true);
+    });
+
+    // Cleanup the event listener on component unmount
+    return () => { eventEmitter.removeAllListeners('myEvent'); }
+  }, []);
 
   return (
     <div className='navigation'>
@@ -30,8 +42,7 @@ function Navigation() {
         {!hidePrevious && (
           <button
             className='btn'
-            onClick={() => setWaitingState(!isWaiting)}
-            //disabled={isFirstStep}
+            disabled={isFirstStep}
             type='button'
           >
             <BsArrowLeft className='w-8 h-8 fill-current' />
@@ -48,7 +59,7 @@ function Navigation() {
               disabled={disableNext}
               type='submit'
             >
-              {(isLoading || isWaiting === true) && (
+              {(isLoading || isWaiting) && (
                 <span className='mr-1 loading'>
                   <ClipLoader size={11} color='#757575' />
                 </span>
