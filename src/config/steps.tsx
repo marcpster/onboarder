@@ -92,8 +92,8 @@ const steps: StepConfig[] = [
       else if (result.status !== 200) {
         errors.email = `Server response: ${result?.status}`
       }
-      //TEMP=> ENABLE LI
-      stepValues.linkedin = 'https://www.linkedin.com/in/to_do'
+      //#TODO: derive below from response
+      //stepValues.linkedin = 'https://www.linkedin.com/in/to_do'
 
       return errors
     },
@@ -107,30 +107,6 @@ const steps: StepConfig[] = [
       return stepValues
     }    
   },
-
-
-  {
-    id: 'EmailCheck',
-    component: <StepEmailCheck />,
-    hideNext: true,
-    hidePrevious: true,
-    shouldSkip: (values: WizardValues, direction: number) => {
-
-      if (values.StepEmail.emailChecked) {
-        return true;
-      }
-      values.StepEmail.emailChecked = true;
-
-      // Skip if we click "Previous" in "StepAsync"
-      if (direction === -1) {
-        return true
-      }
-      // Skip if email has been filled
-      return false //!!values.StepGeneral.email
-    }
-  },
-
-
 
   {
     id: 'StepLinkedIn',
@@ -154,6 +130,28 @@ const steps: StepConfig[] = [
 
       // Skip if linkedin has been found
       return !!values.StepEmail.linkedin
+    }
+  },
+
+
+  {
+    id: 'EmailCheck',
+    component: <StepEmailCheck />,
+    hideNext: true,
+    hidePrevious: true,
+    shouldSkip: (values: WizardValues, direction: number) => {
+
+      if (values.StepEmail.emailChecked) {
+        return true;
+      }
+      values.StepEmail.emailChecked = true;
+
+      // Skip if we click "Previous" in "StepAsync"
+      if (direction === -1) {
+        return true
+      }
+      // Skip if email has been filled
+      return false //!!values.StepGeneral.email
     }
   },
 
