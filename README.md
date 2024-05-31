@@ -18,4 +18,4 @@ Issues:
 
 - Use the example for the warning step when a business email is supplied (also hides next/prev)
 
-- Use the animation on the next button when calling the api
+- ~~Use the animation on the next button when calling the api~~

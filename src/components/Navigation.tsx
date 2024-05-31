@@ -42,6 +42,7 @@ function Navigation() {
         {!hidePrevious && (
           <button
             className='btn'
+            onClick={goToPreviousStep}
             disabled={isFirstStep}
             type='button'
           >
@@ -56,14 +57,8 @@ function Navigation() {
           <div onClick={disableNext ? submitForm : undefined}>
             <button
               className='btn'
-              disabled={disableNext}
               type='submit'
             >
-              {(isLoading || isWaiting) && (
-                <span className='mr-1 loading'>
-                  <ClipLoader size={11} color='#757575' />
-                </span>
-              )}
               <span>Next Bit</span>
               <BsArrowRight className='w-8 h-8 fill-current' />
             </button>
