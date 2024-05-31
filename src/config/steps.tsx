@@ -56,7 +56,7 @@ const steps: StepConfig[] = [
     },
     disableNextOnErrors: true,
 
-    validate: async (stepValues: Values, values: WizardValues, actions: FormikHelpers<any>) => {
+    validate: async (stepValues: Values /*,values: WizardValues*/ /*, actions: FormikHelpers<any>*/) => {
       console.log('test2')
     
       const errors: any = {}
@@ -125,7 +125,7 @@ const steps: StepConfig[] = [
 
     //hideNext: true,
     //hidePrevious: true,
-    shouldSkip: (values: WizardValues, direction: number) => {
+    shouldSkip: (values: WizardValues /*,direction: number*/) => {
 
       // Skip if linkedin has been found
       return !!values.StepEmail.linkedin
