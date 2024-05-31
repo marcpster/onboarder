@@ -26,9 +26,9 @@ function Navigation() {
 
   useEffect(() => {
 
-    eventEmitter.on('myEvent', (data: any) => {
-      console.log('Event received:', data);
-      setisWaiting(true);
+    eventEmitter.on('wait', (data: any) => {
+      console.log('WAIT Event received:', data);
+      setisWaiting(data.waiting);
     });
 
     // Cleanup the event listener on component unmount

@@ -64,11 +64,8 @@ const steps: StepConfig[] = [
         errors.email = 'Please enter your email';
         return errors;
       }
-      // const [isWaiting, setWaitingState] = useWaiting();
-      // setWaitingState(true);
 
-      eventEmitter.emit('myEvent', { someData: 'data' });
-
+      eventEmitter.emit('wait', { waiting: true });
 
       const result = await postJSON({
           url: "/api/v2/contact_enrichment", 
@@ -85,6 +82,7 @@ const steps: StepConfig[] = [
         }
       );
 
+      eventEmitter.emit('wait', { waiting: false });
       console.log(result.json)
 
       if (result.status === 400) {
