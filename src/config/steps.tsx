@@ -6,7 +6,133 @@ import StepEmailCheck from '../components/steps/StepEmailCheck'
 import StepAsync from '../components/steps/StepAsync'
 import StepFinal from '../components/steps/StepFinal'
 
+// Emitting an event from anywhere in the application
+import eventEmitter from '@/state/eventEmitter';
+
+/**
+ * Utility wrapper for fetch 
+ */
+
+type Options = { url: string; headers: any; bodyJson: object; };
+
+async function postJSON(options: Options) {
+  const response = await fetch(options.url, { 
+    method: "POST",
+    headers: options.headers,
+    body: JSON.stringify(options.bodyJson),
+  })
+  .catch(e => console.error('fetch() error', e));
+
+  // Get the JSON - if it is present
+  let json: any = null;
+  try { json = await response?.json(); } catch (e) {}
+
+  return {
+    status: response?.status,
+    json
+  };
+}
+
 const steps: StepConfig[] = [
+  {
+    id: 'StepEmail',
+    title: 'Getting Your Details',
+    helpText: 'Please enter your email',
+
+    titles: {
+    },
+    initialValues: {
+      email: '',
+      //linkedin: ''
+    },
+    fields: {
+      inputTypes: {
+        email: 'email',
+        linkedin: 'hidden'
+      },
+      placeholders: {
+        email: 'e.g. john@doe.com'
+      }
+    },
+    disableNextOnErrors: true,
+
+    validate: async (stepValues: Values /*,values: WizardValues*/ /*, actions: FormikHelpers<any>*/) => {
+      console.log('test2')
+    
+      const errors: any = {}
+      if (!stepValues.email) {
+        errors.email = 'Please enter your email';
+        return errors;
+      }
+
+      eventEmitter.emit('wait', { waiting: true });
+
+      const result = await postJSON({
+          url: "/api/v2/contact_enrichment", 
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${import.meta.env.VITE_MLOPS_APP_KEY}`,
+          },
+          bodyJson: {
+            "clearbit": true,
+            "apollo": true,
+            "proxycurl": true,
+            "email": stepValues.email
+          }
+        }
+      );
+
+      eventEmitter.emit('wait', { waiting: false });
+      console.log(result.json)
+
+      if (result.status === 400) {
+        errors.email = result.json?.message;
+      }
+      else if (result.status !== 200) {
+        errors.email = `Server response: ${result?.status}`
+      }
+      //TEMP=> ENABLE LI
+      stepValues.linkedin = 'https://www.linkedin.com/in/to_do'
+
+      return errors
+    },
+
+    validateOnBlur: false,
+    validateOnChange: false,
+
+    onSubmit: async (stepValues: Values, _allValues: WizardValues, _actions: FormikHelpers<any>) => {
+      
+      console.log(stepValues)
+      return stepValues
+    }    
+  },
+
+  {
+    id: 'StepLinkedIn',
+    titles: {
+    },
+    initialValues: {
+      linkedin: ''
+    },
+    fields: {
+      inputTypes: {
+        linkedin: 'url'
+      },
+      placeholders: {
+        linkedin: 'e.g. https://www.linkedin.com/in/williamhgates/'
+      }
+    },
+
+    //hideNext: true,
+    //hidePrevious: true,
+    shouldSkip: (values: WizardValues /*,direction: number*/) => {
+
+      // Skip if linkedin has been found
+      return !!values.StepEmail.linkedin
+    }
+  },
+
+
   {
     id: 'Step1',
     title: 'General Settings',

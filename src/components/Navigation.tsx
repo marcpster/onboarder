@@ -4,6 +4,9 @@ import { useFormikContext } from 'formik'
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
 import ClipLoader from 'react-spinners/ClipLoader'
 
+import eventEmitter from '@/state/eventEmitter';
+import { useState, useEffect } from 'react';
+
 function Navigation() {
   let {
     goToPreviousStep,
@@ -18,6 +21,19 @@ function Navigation() {
   } = useWizard()
   const { isValid, submitForm } = useFormikContext()
   disableNext = isLoading || disableNext || (disableNextOnErrors && !isValid)
+
+  const [isWaiting, setisWaiting] = useState(false);  
+
+  useEffect(() => {
+
+    eventEmitter.on('wait', (data: any) => {
+      console.log('WAIT Event received:', data);
+      setisWaiting(data.waiting);
+    });
+
+    // Cleanup the event listener on component unmount
+    return () => { eventEmitter.removeAllListeners('myEvent'); }
+  }, []);
 
   return (
     <div className='navigation'>
@@ -41,15 +57,9 @@ function Navigation() {
           <div onClick={disableNext ? submitForm : undefined}>
             <button
               className='btn'
-              disabled={disableNext}
               type='submit'
             >
-              {isLoading && (
-                <span className='mr-1 loading'>
-                  <ClipLoader size={11} color='#757575' />
-                </span>
-              )}
-              <span>Next</span>
+              <span>Next Bit</span>
               <BsArrowRight className='w-8 h-8 fill-current' />
             </button>
           </div>
