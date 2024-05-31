@@ -4,6 +4,8 @@ import { useFormikContext } from 'formik'
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
 import ClipLoader from 'react-spinners/ClipLoader'
 
+import { useWaiting } from '../hooks/useWaiting'
+
 function Navigation() {
   let {
     goToPreviousStep,
@@ -19,6 +21,8 @@ function Navigation() {
   const { isValid, submitForm } = useFormikContext()
   disableNext = isLoading || disableNext || (disableNextOnErrors && !isValid)
 
+  const [isWaiting, setWaitingState] = useWaiting();
+
   return (
     <div className='navigation'>
       <div className={'navigation-wrapper ' + (hidePrevious ? 'justify-end' : 'justify-between')}>
@@ -26,8 +30,8 @@ function Navigation() {
         {!hidePrevious && (
           <button
             className='btn'
-            onClick={goToPreviousStep}
-            disabled={isFirstStep}
+            onClick={() => setWaitingState(!isWaiting)}
+            //disabled={isFirstStep}
             type='button'
           >
             <BsArrowLeft className='w-8 h-8 fill-current' />
@@ -44,7 +48,7 @@ function Navigation() {
               disabled={disableNext}
               type='submit'
             >
-              {isLoading && (
+              {(isLoading || isWaiting === true) && (
                 <span className='mr-1 loading'>
                   <ClipLoader size={11} color='#757575' />
                 </span>

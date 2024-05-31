@@ -5,6 +5,7 @@ import { FormikHelpers } from 'formik'
 import StepEmailCheck from '../components/steps/StepEmailCheck'
 import StepAsync from '../components/steps/StepAsync'
 import StepFinal from '../components/steps/StepFinal'
+import { useWaiting } from '@/hooks/useWaiting'
 
 /**
  * Utility wrapper for fetch 
@@ -32,6 +33,15 @@ async function postJSON(options: Options) {
 
 const steps: StepConfig[] = [
   {
+    id: 'Async',
+    component: <StepAsync />,
+    onSubmit: async (stepValues: Values, _allValues: WizardValues, _actions: FormikHelpers<any>) => {
+      const delay = (ms: number) => new Promise(res => setTimeout(res, ms))
+      await delay(2000)
+      return stepValues
+    }
+  },
+  {
     id: 'StepEmail',
     title: 'Getting Your Details',
     helpText: 'Please enter your email',
@@ -53,7 +63,7 @@ const steps: StepConfig[] = [
     },
     disableNextOnErrors: true,
 
-    validate: async (stepValues: Values, values: WizardValues) => {
+    validate: async (stepValues: Values, values: WizardValues, actions: FormikHelpers<any>) => {
       console.log('test2')
     
       const errors: any = {}
@@ -61,6 +71,9 @@ const steps: StepConfig[] = [
         errors.email = 'Please enter your email';
         return errors;
       }
+      const [isWaiting, setWaitingState] = useWaiting();
+
+      setWaitingState(true);
 
       const result = await postJSON({
           url: "/api/v2/contact_enrichment", 
