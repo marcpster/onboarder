@@ -1,15 +1,15 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import { useWizard } from 'react-formik-step-wizard'
 
 function StepFinal() {
-  const { values, updateStep } = useWizard()
-  const [ truthy, setTruthy ] = useState(true)
-
-  function toggle() {
-    const res = !truthy
-    setTruthy(res)
-    updateStep('hideNext', res)
-  }
+  const { values /*, updateStep*/ } = useWizard()
+  
+  // const [ truthy, setTruthy ] = useState(true)
+  // function toggle() {
+  //   const res = !truthy
+  //   setTruthy(res)
+  //   updateStep('hideNext', res)
+  // }
 
   let data = {}
   Object.keys(values).forEach(stepId => {

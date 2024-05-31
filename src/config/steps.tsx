@@ -1,9 +1,9 @@
-import { StepGeneralSchema, validateUsername } from './validation'
+import { StepGeneralSchema /*,validateUsername*/ } from './validation'
 //@ts-ignore
 import { Values, WizardValues, StepConfig } from 'react-formik-step-wizard'
 import { FormikHelpers } from 'formik'
 import StepEmailCheck from '../components/steps/StepEmailCheck'
-import StepAsync from '../components/steps/StepAsync'
+// import StepAsync from '../components/steps/StepAsync'
 import StepFinal from '../components/steps/StepFinal'
 
 // Emitting an event from anywhere in the application
