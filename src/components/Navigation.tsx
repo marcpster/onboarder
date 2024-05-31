@@ -4,7 +4,7 @@ import { useFormikContext } from 'formik'
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
 import ClipLoader from 'react-spinners/ClipLoader'
 
-import eventEmitter from '@/eventEmitter';
+import eventEmitter from '@/state/eventEmitter';
 import { useState, useEffect } from 'react';
 
 function Navigation() {

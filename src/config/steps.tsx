@@ -5,9 +5,9 @@ import { FormikHelpers } from 'formik'
 import StepEmailCheck from '../components/steps/StepEmailCheck'
 import StepAsync from '../components/steps/StepAsync'
 import StepFinal from '../components/steps/StepFinal'
-import { useWaiting } from '@/hooks/useWaiting'
+
 // Emitting an event from anywhere in the application
-import eventEmitter from '@/eventEmitter';
+import eventEmitter from '@/state/eventEmitter';
 
 /**
  * Utility wrapper for fetch 
