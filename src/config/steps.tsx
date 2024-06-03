@@ -8,6 +8,8 @@ import StepFinal from '../components/steps/StepFinal'
 
 // Emitting an event from anywhere in the application
 import eventEmitter from '@/state/eventEmitter';
+import { settings as userSettings } from './userSettings'
+
 
 /**
  * Utility wrapper for fetch 
@@ -67,7 +69,6 @@ const steps: StepConfig[] = [
       }
 
       eventEmitter.emit('wait', { waiting: true });
-
       const result = await postJSON({
           url: "/api/v2/contact_enrichment", 
           headers: {
@@ -82,9 +83,10 @@ const steps: StepConfig[] = [
           }
         }
       );
-
       eventEmitter.emit('wait', { waiting: false });
+
       console.log(result.json)
+      userSettings.output = result.json.output;
 
       if (result.status === 400) {
         errors.email = result.json?.message;
@@ -92,8 +94,9 @@ const steps: StepConfig[] = [
       else if (result.status !== 200) {
         errors.email = `Server response: ${result?.status}`
       }
-      //#TODO: derive below from response
-      //stepValues.linkedin = 'https://www.linkedin.com/in/to_do'
+      // @MP: Fake server responses
+      userSettings.linkedIn = 'https://www.linkedin.com/in/to_do';
+      userSettings.businessEmail = false;
 
       return errors
     },
@@ -103,7 +106,7 @@ const steps: StepConfig[] = [
 
     onSubmit: async (stepValues: Values, _allValues: WizardValues, _actions: FormikHelpers<any>) => {
       
-      console.log(stepValues)
+      console.log('output', userSettings)
       return stepValues
     }    
   },
@@ -129,7 +132,7 @@ const steps: StepConfig[] = [
     shouldSkip: (values: WizardValues /*,direction: number*/) => {
 
       // Skip if linkedin has been found
-      return !!values.StepEmail.linkedin
+      return !!userSettings.linkedIn
     }
   },
 
@@ -151,7 +154,7 @@ const steps: StepConfig[] = [
         return true
       }
       // Skip if email has been filled
-      return false //!!values.StepGeneral.email
+      return userSettings.businessEmail ; //!!values.StepGeneral.email
     }
   },
 
