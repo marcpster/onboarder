@@ -1,6 +1,6 @@
 // import { useState } from 'react'
 import { useWizard } from 'react-formik-step-wizard'
-import { settings } from '@/config/userSettings'
+import { userSettings } from '@/state/userSettings'
 
 function StepFinal() {
   const { values /*, updateStep*/ } = useWizard()
@@ -29,7 +29,7 @@ function StepFinal() {
       </div>
       <code className='text-sm sm:text-base bg-transparent'>
         <pre className='mt-0'>
-          {JSON.stringify(settings, null, 2)}
+          {JSON.stringify(userSettings, null, 2)}
         </pre>
       </code>
     </div>

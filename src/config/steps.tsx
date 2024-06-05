@@ -8,7 +8,7 @@ import StepFinal from '../components/steps/StepFinal'
 
 // Emitting an event from anywhere in the application
 import eventEmitter from '@/state/eventEmitter';
-import { settings as userSettings } from './userSettings'
+import { userSettings } from '@/state/userSettings'
 import { postJSON } from '@/lib/postJSON'
 
 
