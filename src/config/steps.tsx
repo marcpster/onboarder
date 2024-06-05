@@ -1,92 +1,17 @@
 import { StepGeneralSchema /*,validateUsername*/ } from './validation'
 //@ts-ignore
-import { Values, WizardValues, StepConfig } from 'react-formik-step-wizard'
-import { FormikHelpers } from 'formik'
+import { WizardValues, StepConfig } from 'react-formik-step-wizard'
 import StepEmailCheck from '../components/steps/StepEmailCheck'
 // import StepAsync from '../components/steps/StepAsync'
 import StepFinal from '../components/steps/StepFinal'
 
 // Emitting an event from anywhere in the application
-import eventEmitter from '@/state/eventEmitter';
 import { userSettings } from '@/state/userSettings'
-import { postJSON } from '@/lib/postJSON'
+import { StepEmail } from '@/config/StepEmail'
 
 
 const steps: StepConfig[] = [
-  {
-    id: 'StepEmail',
-    title: 'Getting Your Details',
-    helpText: 'Please enter your email',
-
-    titles: {
-    },
-    initialValues: {
-      email: '',
-      //linkedin: ''
-    },
-    fields: {
-      inputTypes: {
-        email: 'email',
-        linkedin: 'hidden',
-        emailChecked: false
-      },
-      placeholders: {
-        email: 'e.g. john@doe.com'
-      }
-    },
-    disableNextOnErrors: true,
-
-    validate: async (stepValues: Values /*,values: WizardValues*/ /*, actions: FormikHelpers<any>*/) => {
-      console.log('test2')
-    
-      const errors: any = {}
-      if (!stepValues.email) {
-        errors.email = 'Please enter your email';
-        return errors;
-      }
-
-      eventEmitter.emit('wait', { waiting: true });
-      const result = await postJSON({
-          url: "/api/v2/contact_enrichment", 
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${import.meta.env.VITE_MLOPS_APP_KEY}`,
-          },
-          bodyJson: {
-            "clearbit": true,
-            "apollo": true,
-            "proxycurl": true,
-            "email": stepValues.email
-          }
-        }
-      );
-      eventEmitter.emit('wait', { waiting: false });
-
-      console.log(result.json)
-      userSettings.output = result.json.output;
-
-      if (result.status === 400) {
-        errors.email = result.json?.message;
-      }
-      else if (result.status !== 200) {
-        errors.email = `Server response: ${result?.status}`
-      }
-      // @MP: Fake server responses
-      userSettings.linkedIn = 'https://www.linkedin.com/in/to_do';
-      userSettings.businessEmail = false;
-
-      return errors
-    },
-
-    validateOnBlur: false,
-    validateOnChange: false,
-
-    onSubmit: async (stepValues: Values, _allValues: WizardValues, _actions: FormikHelpers<any>) => {
-      
-      console.log('output', userSettings)
-      return stepValues
-    }    
-  },
+  StepEmail ,
 
   {
     id: 'StepLinkedIn',
@@ -130,8 +55,12 @@ const steps: StepConfig[] = [
       if (direction === -1) {
         return true
       }
+
+      if (userSettings.free_email) {
+        return true;
+      }
       // Skip if email has been filled
-      return !userSettings.businessEmail ; //!!values.StepGeneral.email
+      return false ; //!!values.StepGeneral.email
     }
   },
 
