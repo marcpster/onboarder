@@ -9,31 +9,8 @@ import StepFinal from '../components/steps/StepFinal'
 // Emitting an event from anywhere in the application
 import eventEmitter from '@/state/eventEmitter';
 import { settings as userSettings } from './userSettings'
+import { postJSON } from '@/lib/postJSON'
 
-
-/**
- * Utility wrapper for fetch 
- */
-
-type Options = { url: string; headers: any; bodyJson: object; };
-
-async function postJSON(options: Options) {
-  const response = await fetch(options.url, { 
-    method: "POST",
-    headers: options.headers,
-    body: JSON.stringify(options.bodyJson),
-  })
-  .catch(e => console.error('fetch() error', e));
-
-  // Get the JSON - if it is present
-  let json: any = null;
-  try { json = await response?.json(); } catch (e) {}
-
-  return {
-    status: response?.status,
-    json
-  };
-}
 
 const steps: StepConfig[] = [
   {
