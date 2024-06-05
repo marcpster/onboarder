@@ -46,6 +46,7 @@
     "react-dom": ">=17.0.0"
   },
   "dependencies": {
+    "@rudderstack/analytics-js": "^3.2.2",
     "events": "^3.3.0"
   }
 }
