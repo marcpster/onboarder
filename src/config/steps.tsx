@@ -154,7 +154,7 @@ const steps: StepConfig[] = [
         return true
       }
       // Skip if email has been filled
-      return userSettings.businessEmail ; //!!values.StepGeneral.email
+      return !userSettings.businessEmail ; //!!values.StepGeneral.email
     }
   },
 
