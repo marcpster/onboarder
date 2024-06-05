@@ -34,7 +34,10 @@ const steps: StepConfig[] = [
     shouldSkip: (/*values: WizardValues*/ /*,direction: number*/) => {
 
       // Skip if linkedin has been found
-      return !!userSettings.linkedIn
+      if (userSettings.linkedin_url) {
+        return true;
+      }
+      return false;
     }
   },
 

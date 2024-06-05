@@ -61,9 +61,7 @@ export const StepEmail = {
     else if (result.status !== 200) {
       errors.email = `Server response: ${result?.status}`;
     }
-    // @MP: Fake server responses
-    userSettings.linkedIn = 'https://www.linkedin.com/in/to_do';
-    //userSettings.businessEmail = false;
+    userSettings.linkedin_url = result.json.output.linkedin_url;
     userSettings.free_email = result.json.output.free_email;
 
     return errors;
