@@ -129,7 +129,7 @@ const steps: StepConfig[] = [
 
     //hideNext: true,
     //hidePrevious: true,
-    shouldSkip: (values: WizardValues /*,direction: number*/) => {
+    shouldSkip: (/*values: WizardValues*/ /*,direction: number*/) => {
 
       // Skip if linkedin has been found
       return !!userSettings.linkedIn
