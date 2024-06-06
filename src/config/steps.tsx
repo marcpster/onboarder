@@ -1,46 +1,19 @@
 import { StepGeneralSchema /*,validateUsername*/ } from './validation'
 //@ts-ignore
-import { WizardValues, StepConfig } from 'react-formik-step-wizard'
-import StepEmailCheck from '../components/steps/StepEmailCheck'
+import { StepConfig } from 'react-formik-step-wizard'
+//import StepEmailCheck from '../components/steps/StepEmailCheck'
 // import StepAsync from '../components/steps/StepAsync'
 import StepFinal from '../components/steps/StepFinal'
 
 // Emitting an event from anywhere in the application
-import { userSettings } from '@/state/userSettings'
 import { StepEmail } from '@/config/StepEmail'
 import { StepLinkedIn } from './StepLinkedIn'
-
-
+import { StepEmailCheck } from '@/config/StepEmailCheck'
 
 const steps: StepConfig[] = [
   StepEmail ,
   StepLinkedIn,
-
-
-  {
-    id: 'EmailCheck',
-    component: <StepEmailCheck />,
-    hideNext: true,
-    hidePrevious: true,
-    shouldSkip: (values: WizardValues, direction: number) => {
-
-      if (values.StepEmail.emailChecked) {
-        return true;
-      }
-      values.StepEmail.emailChecked = true;
-
-      // Skip if we click "Previous" in "StepAsync"
-      if (direction === -1) {
-        return true
-      }
-
-      if (userSettings.free_email) {
-        return true;
-      }
-      // Skip if email has been filled
-      return false ; //!!values.StepGeneral.email
-    }
-  },
+  StepEmailCheck,
 
 
   {
