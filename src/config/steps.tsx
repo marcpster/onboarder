@@ -1,11 +1,7 @@
 import { StepGeneralSchema /*,validateUsername*/ } from './validation'
 //@ts-ignore
 import { StepConfig } from 'react-formik-step-wizard'
-//import StepEmailCheck from '../components/steps/StepEmailCheck'
-// import StepAsync from '../components/steps/StepAsync'
 import StepFinal from '../components/steps/StepFinal'
-
-// Emitting an event from anywhere in the application
 import { StepEmail } from '@/config/StepEmail'
 import { StepLinkedIn } from './StepLinkedIn'
 import { StepEmailCheck } from '@/config/StepEmailCheck'
@@ -72,15 +68,6 @@ const steps: StepConfig[] = [
   //   disableNextOnErrors: true
   // },
 
-  // {
-  //   id: 'Async',
-  //   component: <StepAsync />,
-  //   onSubmit: async (stepValues: Values, _allValues: WizardValues, _actions: FormikHelpers<any>) => {
-  //     const delay = (ms: number) => new Promise(res => setTimeout(res, ms))
-  //     await delay(2000)
-  //     return stepValues
-  //   }
-  // },
 
   {
     id: 'Final',

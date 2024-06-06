@@ -14,7 +14,7 @@ export const StepEmailCheck = {
     }
     values.StepEmail.emailChecked = true;
 
-    // Skip if we click "Previous" in "StepAsync"
+    // Skip if we click "Previous"
     if (direction === -1) {
       return true;
     }
