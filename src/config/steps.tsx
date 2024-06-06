@@ -6,11 +6,21 @@ import StepFinal from '@/components/steps/ComponentFinal'
 import { StepEmail } from '@/config/StepEmail'
 import { StepLinkedIn } from '@/config/StepLinkedIn'
 import { StepEmailCheck } from '@/config/StepEmailCheck'
+import { StepAccomplish } from '@/config/StepAccomplish'
 
 const steps: StepConfig[] = [
   StepEmail ,
   StepLinkedIn,
   StepEmailCheck,
+  StepAccomplish,
+
+
+  {
+    id: 'Final',
+    component: <StepFinal />,
+    hideNext: true,
+    hidePrevious: false 
+  }
 
   // {
   //   id: 'StepGeneral',
@@ -67,14 +77,6 @@ const steps: StepConfig[] = [
   //   validate: validateUsername,
   //   disableNextOnErrors: true
   // },
-
-
-  {
-    id: 'Final',
-    component: <StepFinal />,
-    hideNext: true,
-    hidePrevious: false 
-  }
 ]
 
 export default steps

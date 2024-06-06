@@ -90,7 +90,8 @@ function MyField (props: any) {
     // https://formik.org/docs/examples/checkboxes 
 
     // show both styles
-    const className = id === 'useSlack' ? 'checkbox' : 'toggle toggle-sm bg-gray-300 toggle-success';
+    //const className = id === 'useSlack' ? 'checkbox' : 'toggle toggle-sm bg-gray-300 toggle-success';
+    const className = 'checkbox';
 
     return (
       <Field       
