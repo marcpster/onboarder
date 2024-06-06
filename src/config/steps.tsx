@@ -1,4 +1,5 @@
-import { StepGeneralSchema /*,validateUsername*/ } from './validation'
+//import { StepGeneralSchema /*,validateUsername*/ } from './validation'
+
 //@ts-ignore
 import { StepConfig } from 'react-formik-step-wizard'
 import StepFinal from '@/components/steps/ComponentFinal'
