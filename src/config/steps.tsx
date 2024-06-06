@@ -1,17 +1,15 @@
 import { StepGeneralSchema /*,validateUsername*/ } from './validation'
 //@ts-ignore
 import { StepConfig } from 'react-formik-step-wizard'
-import StepFinal from '../components/steps/StepFinal'
+import StepFinal from '@/components/steps/ComponentFinal'
 import { StepEmail } from '@/config/StepEmail'
-import { StepLinkedIn } from './StepLinkedIn'
+import { StepLinkedIn } from '@/config/StepLinkedIn'
 import { StepEmailCheck } from '@/config/StepEmailCheck'
 
 const steps: StepConfig[] = [
   StepEmail ,
   StepLinkedIn,
   StepEmailCheck,
-
-
   {
     id: 'StepGeneral',
     title: 'General Settings',
