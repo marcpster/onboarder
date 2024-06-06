@@ -8,38 +8,13 @@ import StepFinal from '../components/steps/StepFinal'
 // Emitting an event from anywhere in the application
 import { userSettings } from '@/state/userSettings'
 import { StepEmail } from '@/config/StepEmail'
+import { StepLinkedIn } from './StepLinkedIn'
+
 
 
 const steps: StepConfig[] = [
   StepEmail ,
-
-  {
-    id: 'StepLinkedIn',
-    titles: {
-    },
-    initialValues: {
-      linkedin: ''
-    },
-    fields: {
-      inputTypes: {
-        linkedin: 'url'
-      },
-      placeholders: {
-        linkedin: 'e.g. https://www.linkedin.com/in/williamhgates/'
-      }
-    },
-
-    //hideNext: true,
-    //hidePrevious: true,
-    shouldSkip: (/*values: WizardValues*/ /*,direction: number*/) => {
-
-      // Skip if linkedin has been found
-      if (userSettings.linkedin_url) {
-        return true;
-      }
-      return false;
-    }
-  },
+  StepLinkedIn,
 
 
   {
