@@ -10,7 +10,7 @@ export const StepOptins = {
     title: 'Newsletter/Sponsors',
     helpText: 'Stay in the loop! Check these boxes to opt-in to our newsletter and share your details with sponsors.',
 
-    titles: {
+    fieldTitles: {
       //useSlack: 'Join Our Slack Channel',
     },
 

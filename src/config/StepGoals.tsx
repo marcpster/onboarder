@@ -1,16 +1,17 @@
 
 // Capture the user goals
 
-import { WizardValues } from 'react-formik-step-wizard';
+import { WizardValues, StepConfig } from 'react-formik-step-wizard';
 import { FormikHelpers } from 'formik';
 import { userSettings } from '@/state/userSettings';
 
-export const StepGoals = {
+export const StepGoals: StepConfig = {
     id: 'StepGoals',
     title: 'Goals',
     helpText: 'what are you coming to the community to accomplish? (select all that apply)',
 
-    titles: {
+    // @MP Extension to allow custom titles
+    fieldTitles: {
       //useSlack: 'Join Our Slack Channel',
     },
 

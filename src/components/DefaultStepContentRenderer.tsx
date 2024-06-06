@@ -4,7 +4,6 @@ import CustomInput from '@/components/CustomInput'
 interface Props {
   activeStep: any,
   initialValues: any,
-  titles: any,
   values: any
 }
 
@@ -19,8 +18,9 @@ function DefaultStepContentRenderer({
     return field.replace(/[A-Z]/g, ' $&')
   }
 
+  // @MP allow specification of title
   function getTitle(field: string) {
-    return activeStep?.titles?.[field] || humanize(field);
+    return activeStep?.fieldTitles?.[field] || humanize(field);
   }
 
   function getFieldConstraints(yupSchema: any, fieldType: string) {

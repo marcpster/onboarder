@@ -2,7 +2,7 @@ import { userSettings } from '@/state/userSettings';
 
 export const StepLinkedIn = {
   id: 'StepLinkedIn',
-  titles: {},
+  fieldTitles: {},
   initialValues: {
     linkedin: ''
   },

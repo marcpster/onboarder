@@ -32,7 +32,7 @@ export default steps
 //   id: 'StepGeneral',
 //   title: 'General Settings',
 //   helpText: 'Select whether you would like to join our Slack channel and newsletter.',
-//   titles: {
+//   fieldTitles: {
 //     useSlack: 'Join Our Slack Channel',
 //     // area: 'Area of Interest'
 //   },

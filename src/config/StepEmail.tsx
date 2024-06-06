@@ -9,7 +9,7 @@ export const StepEmail = {
   id: 'StepEmail',
   title: 'Getting Your Details',
   helpText: 'Please enter your email',
-  titles: {},
+  fieldTitles: {},
   initialValues: {
     email: '',
     //linkedin: ''
