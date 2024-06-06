@@ -1,23 +1,12 @@
+
+// Capture the user goals
+
 import { WizardValues } from 'react-formik-step-wizard';
 import { FormikHelpers } from 'formik';
-// import eventEmitter from '@/state/eventEmitter';
 import { userSettings } from '@/state/userSettings';
-// import { postJSON } from '@/lib/postJSON';
 
-
-
-// How do we actually sort a user into a persona based on the answer they give to: 
-// market my product
-// hire talent
-// get a job
-// meet new people
-// up skill
-// Stay updated
-// Learn new things
-
-
-export const StepAccomplish = {
-    id: 'StepAccomplish',
+export const StepGoals = {
+    id: 'StepGoals',
     title: 'Goals',
     helpText: 'what are you coming to the community to accomplish? (select all that apply)',
 
@@ -34,9 +23,7 @@ export const StepAccomplish = {
       stayUpdated: false,
       learn: false,
     },
-    // attrs defined under "fields" are for custom step renderer made
-    // just for this demo folder, otherwise these aren't part of
-    // the step config object
+    // attrs defined under "fields" are for custom step renderer
     fields: {
 
       inputTypes: {

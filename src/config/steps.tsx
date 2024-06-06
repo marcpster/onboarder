@@ -6,14 +6,14 @@ import StepFinal from '@/components/steps/ComponentFinal'
 import { StepEmail } from '@/config/StepEmail'
 import { StepLinkedIn } from '@/config/StepLinkedIn'
 import { StepEmailCheck } from '@/config/StepEmailCheck'
-import { StepAccomplish } from '@/config/StepAccomplish'
+import { StepGoals } from '@/config/StepGoals'
 import { StepOptins } from '@/config/StepOptins'
 
 const steps: StepConfig[] = [
   StepEmail ,
   StepLinkedIn,
   StepEmailCheck,
-  StepAccomplish,
+  StepGoals,
   StepOptins,
 
   {
