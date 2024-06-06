@@ -4,7 +4,6 @@ import CustomInput from '@/components/CustomInput'
 interface Props {
   activeStep: any,
   initialValues: any,
-  titles: any,
   values: any
 }
 
@@ -19,8 +18,9 @@ function DefaultStepContentRenderer({
     return field.replace(/[A-Z]/g, ' $&')
   }
 
+  // @MP allow specification of title
   function getTitle(field: string) {
-    return activeStep?.titles?.[field] || humanize(field);
+    return activeStep?.fieldTitles?.[field] || humanize(field);
   }
 
   function getFieldConstraints(yupSchema: any, fieldType: string) {
@@ -90,7 +90,8 @@ function MyField (props: any) {
     // https://formik.org/docs/examples/checkboxes 
 
     // show both styles
-    const className = id === 'useSlack' ? 'checkbox' : 'toggle toggle-sm bg-gray-300 toggle-success';
+    //const className = id === 'useSlack' ? 'checkbox' : 'toggle toggle-sm bg-gray-300 toggle-success';
+    const className = 'checkbox';
 
     return (
       <Field       
