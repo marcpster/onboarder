@@ -1,5 +1,6 @@
 // import { useState } from 'react'
 import { useWizard } from 'react-formik-step-wizard'
+import { userSettings } from '@/state/userSettings'
 
 function StepFinal() {
   const { values /*, updateStep*/ } = useWizard()
@@ -23,12 +24,12 @@ function StepFinal() {
     <div className='prose prose-neutral max-w-none'>
       <h2>Congratulations!</h2>
       <div className='flex flex-wrap gap-4 justify-between'>
-        <p className='my-0'>🎉 Here's your input:</p>
+        <p className='my-0'>🎉 Here are your settings:</p>
         {/* <button className='btn' onClick={toggle} type='button'>Toggle hideNext</button> */}
       </div>
       <code className='text-sm sm:text-base bg-transparent'>
         <pre className='mt-0'>
-          {JSON.stringify(data, null, 2)}
+          {JSON.stringify(userSettings, null, 2)}
         </pre>
       </code>
     </div>

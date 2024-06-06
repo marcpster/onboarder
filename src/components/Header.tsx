@@ -1,10 +1,17 @@
 import { useWizard } from 'react-formik-step-wizard'
+import { rudderAnalytics } from '@/lib/rudderAnalytics'
 
 function Header() {
   const isAnimated = true;
 
   const { stepNumber, totalSteps } = useWizard()
   const completed = `${((stepNumber - 1) / (totalSteps - 1)) * 100}%`
+
+  rudderAnalytics.identify("27340af5c8819", {
+    name: "Richard Hendricks",
+    email: "rhedricks@example.com",
+    logins: 2
+  })
 
   return (
     <header className='pt-4 pb-3'>
