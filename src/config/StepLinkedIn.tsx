@@ -1,6 +1,10 @@
+
+// Conditional step capturing LinkedIn if not found
+
+import { StepConfig } from 'react-formik-step-wizard';
 import { userSettings } from '@/state/userSettings';
 
-export const StepLinkedIn = {
+export const StepLinkedIn: StepConfig = {
   id: 'StepLinkedIn',
   fieldTitles: {},
   initialValues: {

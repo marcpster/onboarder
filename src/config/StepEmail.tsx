@@ -1,10 +1,13 @@
-import { WizardValues } from 'react-formik-step-wizard';
+
+// Capture email
+
+import { WizardValues, StepConfig } from 'react-formik-step-wizard';
 import { FormikHelpers } from 'formik';
 import eventEmitter from '@/state/eventEmitter';
 import { userSettings } from '@/state/userSettings';
 import { postJSON } from '@/lib/postJSON';
 
-export const StepEmail = {
+export const StepEmail: StepConfig = {
 
   id: 'StepEmail',
   title: 'Getting Your Details',

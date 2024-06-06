@@ -1,8 +1,11 @@
-import { WizardValues } from 'react-formik-step-wizard';
+
+// Work/personal email conditional step
+
+import { WizardValues, StepConfig } from 'react-formik-step-wizard';
 import { userSettings } from '@/state/userSettings';
 import ComponentEmailCheck from '@/components/steps/ComponentEmailCheck'
 
-export const StepEmailCheck = {
+export const StepEmailCheck: StepConfig = {
   id: 'EmailCheck',
   hideNext: true,
   hidePrevious: true,
