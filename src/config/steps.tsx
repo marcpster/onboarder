@@ -10,46 +10,47 @@ const steps: StepConfig[] = [
   StepEmail ,
   StepLinkedIn,
   StepEmailCheck,
-  {
-    id: 'StepGeneral',
-    title: 'General Settings',
-    helpText: 'Select whether you would like to join our Slack channel and newsletter.',
 
-    titles: {
-      useSlack: 'Join Our Slack Channel',
-      // area: 'Area of Interest'
-    },
+  // {
+  //   id: 'StepGeneral',
+  //   title: 'General Settings',
+  //   helpText: 'Select whether you would like to join our Slack channel and newsletter.',
 
-    initialValues: {
-      useSlack: true,
-      useNewsletter: true,
-      area: '',
-      // lastName: 'Doe',
-      // age: 30,
-    },
-    // attrs defined under "fields" are for custom step renderer made
-    // just for this demo folder, otherwise these aren't part of
-    // the step config object
-    fields: {
+  //   titles: {
+  //     useSlack: 'Join Our Slack Channel',
+  //     // area: 'Area of Interest'
+  //   },
 
-      inputTypes: {
-        useSlack: 'checkbox',
-        useNewsletter: 'checkbox',
-        area: 'select',
-        lastName: 'custom-text',
-        // age: 'number',
-        // email: 'email'
-      },
-      placeholders: {
-        area: 'e.g. John',
-        lastName: 'e.g. Doe',
-        // age: 'e.g. 18',
-        // email: 'e.g. john@doe.com'
-      }
-    },
-    validationSchema: StepGeneralSchema,
-    disableNextOnErrors: true
-  },
+  //   initialValues: {
+  //     useSlack: true,
+  //     useNewsletter: true,
+  //     area: '',
+  //     // lastName: 'Doe',
+  //     // age: 30,
+  //   },
+  //   // attrs defined under "fields" are for custom step renderer made
+  //   // just for this demo folder, otherwise these aren't part of
+  //   // the step config object
+  //   fields: {
+
+  //     inputTypes: {
+  //       useSlack: 'checkbox',
+  //       useNewsletter: 'checkbox',
+  //       area: 'select',
+  //       lastName: 'custom-text',
+  //       // age: 'number',
+  //       // email: 'email'
+  //     },
+  //     placeholders: {
+  //       area: 'e.g. John',
+  //       lastName: 'e.g. Doe',
+  //       // age: 'e.g. 18',
+  //       // email: 'e.g. john@doe.com'
+  //     }
+  //   },
+  //   validationSchema: StepGeneralSchema,
+  //   disableNextOnErrors: true
+  // },
 
   // {
   //   id: 'Step2',
